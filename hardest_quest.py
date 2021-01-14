@@ -7,7 +7,7 @@
 # Your friend told you that this quest is impossible to complete. Knowing that, you're interested, what is the
 # maximum possible number of monsters you can defeat?
 # Input:
-# he first line contains an integer, n, denoting the number of monsters.
+# The first line contains an integer, n, denoting the number of monsters.
 # The next line contains an integer, e, denoting your initial experience.
 # Each line i of the n subsequent lines (where 0 ≤ i < n) contains an integer, poweri, which represents
 # power of the corresponding monster
