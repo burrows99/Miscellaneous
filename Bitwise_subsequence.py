@@ -35,32 +35,31 @@
 # 17
 # 17
 
-def condition(x,y):
-    if((x&y)*2<(x|y) and x<=y):
-        return(True)
+def f(array,index,n,memo):
+    if(memo[index]!=-1):
+        return(memo[index])
+    elif(index>=n-1):
+        memo[index]=[array[n-1]]
+        return([array[n-1]])
     else:
-        return(False)
-def subsequence(a,i):
-    start=a[i]
-    j=i+1
-    A=list()
-    while(j<len(a)):
-        if(condition(a[i],a[j])):
-            A.append(a[j])
-            i=j
-            j=i+1
-        else:
-            j=j+1
-    A.insert(0,start)
-    return(A)
-def F(a):
-    ans=0
-    for i in range(len(a)):
-        s=subsequence(a,i)
-        if(ans<len(s)):
-            ans=len(s)
-    return(ans)
-
+        p=list()
+        a=array[index]
+        for i in range(index+1,n):
+            b=array[i]
+            if(a<b and ((a and b)*2<a or b)):
+                p.append([array[index]]+f(array,i,n,memo))
+        try:
+            memo[index]=max(p,key=len)
+        except:
+            memo[index]=[array[index]]
+        return(memo[index])
+def F(array):
+    n=len(array)
+    global_max=list()
+    memo=[-1]*n
+    for i in range(n):
+        global_max.append(f(array,i,n,memo))
+    return(max(global_max,key=len))
 a=[15,6,5,12,1]
 b=[9,17,2,15,5,2]
 c=[17,16,12,2,8,17,17]
