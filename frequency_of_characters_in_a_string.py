@@ -1,0 +1,20 @@
+def f(s):
+    s=s+'.'
+    value=s[0]
+    count=0
+    i=0
+    n=len(s)
+    ans=list()
+    Ans=list()
+    while(i<n):
+        if(s[i]==value):
+            count=count+1
+        else:
+            ans.append(count)
+            Ans.append(s[i-1])
+            count=1
+            value=s[i]
+        i+=1
+    return(ans,Ans)
+ans=f('ababbc')
+print(ans)
