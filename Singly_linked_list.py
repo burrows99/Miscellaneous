@@ -19,7 +19,6 @@ class LinkedList:
             current=current.nextt
             l=l+str(current.data)+' -> '
         print(l[:-4])
-        return
     def Length(self):
         current=self.head
         l=0
@@ -65,9 +64,25 @@ class LinkedList:
             current=post #traversal
         self.head=pre #setting head node
         print(self.head.data)
+    def GetHead(self):
+        return(self.head)
+    def Set(self):
+        l=set()
+        current=self.head
+        while(current.nextt!=None):
+            if(current.nextt.data in l):
+                current.nextt=current.nextt.nextt
+            else:
+                l.add(current.nextt.data)
+                current=current.nextt
 l=LinkedList()
+def f(l,i):
+    for x in range(i+2):
+        l.Append(i)
 for i in range(5):
-    l.Append(i)
+    f(l,i)
+for i in range(5):
+    f(l,i)
 l.Display()
-l.Reverse()
+l.Set()
 l.Display()
