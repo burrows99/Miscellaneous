@@ -55,4 +55,19 @@ class LinkedList:
                 current_index=current_index+1
         except:
             print('Index out of range!')
-my_first_list=LinkedList()
+    def Reverse(self):
+        pre=None
+        current=self.head
+        while(current!=None):
+            post=current.nextt #storing in a temporary variable
+            current.nextt=pre #changing arrow
+            pre=current #traversal
+            current=post #traversal
+        self.head=pre #setting head node
+        print(self.head.data)
+l=LinkedList()
+for i in range(5):
+    l.Append(i)
+l.Display()
+l.Reverse()
+l.Display()
