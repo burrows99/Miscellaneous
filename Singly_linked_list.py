@@ -76,7 +76,7 @@ class LinkedList:
                     return(True)
         except:
             return(False)
-    def Cyclify(self,index):
+    def Cyclify(self,index=0):
         current=self.head
         while(current.next):
             current=current.next
@@ -87,9 +87,3 @@ class LinkedList:
             current=current.next
             i=i+1
         last.next=current
-l=LinkedList(100)
-l.Append(100)
-l.Append(100)
-for i in range(6):
-    l.Append(i)
-l.Display()
