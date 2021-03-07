@@ -1,9 +1,9 @@
 class Node:
-    def __init__(self,data):
+    def __init__(self,data=None):
         self.data=data
         self.next=None
 class LinkedList:
-    def __init__(self,data=None):
+    def __init__(self,data='Head'):
         self.head=Node(data)
     def Append(self,element):
         current=self.head
@@ -55,6 +55,13 @@ class LinkedList:
             pre=current #traversal
             current=post #traversal
         self.head=pre #setting head node
+        current=self.head
+        while(current.next.next):
+            current=current.next
+        current.next=None
+        new=Node()
+        new.next=self.head
+        self.head=new
     def Settify(self):
         current=self.head
         s=set()
@@ -87,3 +94,9 @@ class LinkedList:
             current=current.next
             i=i+1
         last.next=current
+l=LinkedList()
+for i in range(10):
+    l.Append(i)
+l.Display()
+l.Delete(4)
+l.Display()
