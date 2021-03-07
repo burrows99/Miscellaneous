@@ -1,88 +1,79 @@
 class Node:
-    def __init__(self,data=None):
+    def __init__(self,data):
         self.data=data
-        self.nextt=None
-        
+        self.next=None
 class LinkedList:
-    def __init__(self):
-        self.head=Node()
-    def Append(self,value):
-        newNode=Node(value)
+    def __init__(self,data=None):
+        self.head=Node(data)
+    def Append(self,element):
         current=self.head
-        while(current.nextt!=None):
-            current=current.nextt
-        current.nextt=newNode
+        while(current.next!=None):
+            current=current.next
+        current.next=Node(element)
     def Display(self):
         current=self.head
-        l=''
-        while(current.nextt!=None):
-            current=current.nextt
-            l=l+str(current.data)+' -> '
-        print(l[:-4])
-    def Length(self):
+        List=[]
+        while(current):
+            List.append(str(current.data))
+            current=current.next
+        print(' -> '.join(List))
+    def Insert(self,index,element):
         current=self.head
-        l=0
-        while(current.nextt!=None):
-            current=current.nextt
-            l=l+1
-        return(l)
+        i=0
+        while(i<index):
+            current=current.next
+            i=i+1
+        remaining=current.next
+        current.next=Node(element)
+        current.next.next=remaining
+    def Replace(self,index,element):
+        current=self.head
+        i=0
+        while(i<index):
+            current=current.next
+            i=i+1
+        remaining=current.next.next
+        current.next=Node(element)
+        current.next.next=remaining
     def Delete(self,index):
-        try:
-            current=self.head
-            current_index=0
-            while(True):
-                previous=current
-                current=current.nextt
-                if(current_index==index):
-                    previous.nextt=current.nextt
-                    return
-                current_index=current_index+1
-        except:
-            print('Index out of range!')
-    def Insert(self,index,value):
-        try:
-            newNode=Node(value)
-            current=self.head
-            current_index=0
-            while(True):
-                previous=current
-                current=current.nextt
-                if(current_index==index):
-                    previous.nextt=newNode
-                    newNode.nextt=current
-                    return
-                current_index=current_index+1
-        except:
-            print('Index out of range!')
+        current=self.head
+        i=0
+        while(i<index):
+            current=current.next
+            i=i+1
+        node_to_be_deleted=current.next
+        remaining=node_to_be_deleted.next
+        current.next=remaining
+    def GetHead(self):
+        return(self.head)
     def Reverse(self):
         pre=None
         current=self.head
         while(current!=None):
-            post=current.nextt #storing in a temporary variable
-            current.nextt=pre #changing arrow
+            post=current.next #storing in a temporary variable
+            current.next=pre #changing arrow
             pre=current #traversal
             current=post #traversal
         self.head=pre #setting head node
-        print(self.head.data)
-    def GetHead(self):
-        return(self.head)
-    def Set(self):
-        l=set()
+    def Settify(self):
         current=self.head
-        while(current.nextt!=None):
-            if(current.nextt.data in l):
-                current.nextt=current.nextt.nextt
+        s=set()
+        s.add(current.data)
+        while(current.next!=None):
+            if(current.next.data in s):
+                current.next=current.next.next
             else:
-                l.add(current.nextt.data)
-                current=current.nextt
-l=LinkedList()
-def f(l,i):
-    for x in range(i+2):
-        l.Append(i)
-for i in range(5):
-    f(l,i)
-for i in range(5):
-    f(l,i)
+                s.add(current.next.data)
+                current=current.next
+l=LinkedList(100)
+l.Append(100)
+l.Append(100)
+for i in range(6):
+    l.Append(i)
+for i in range(6):
+    l.Append(i)
 l.Display()
-l.Set()
+l.Reverse()
+l.Display()
+l.Settify()
 l.Display()
