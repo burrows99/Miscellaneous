@@ -65,6 +65,18 @@ class LinkedList:
             else:
                 s.add(current.next.data)
                 current=current.next
+    def IsCycle(self):
+        slow_pointer=self.head
+        fast_pointer=self.head
+        try:
+            while(slow_pointer and fast_pointer):
+                slow_pointer=slow_pointer.next
+                fast_pointer=fast_pointer.next.next
+                if(fast_pointer==slow_pointer):
+                    return(True)
+        except:
+            return(False)
+        
 l=LinkedList(100)
 l.Append(100)
 l.Append(100)
@@ -77,3 +89,4 @@ l.Reverse()
 l.Display()
 l.Settify()
 l.Display()
+print(l.isCycle())
