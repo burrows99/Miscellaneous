@@ -39,7 +39,30 @@ class BinaryTree:
         #     2       3
         #   /  \     /  \
         #  4    5    6   7
-
+def preorder(node):
+    stack=list()
+    while(True):
+        if(node):
+            stack.append(node)
+            print(node.data)
+            node=node.left
+        elif(stack):
+            node=stack.pop()
+            node=node.right
+        else:
+            break
+def inorder(node):
+    stack=list()
+    while(True):
+        if(node):
+            stack.append(node)
+            node=node.left
+        elif(stack):
+            node=stack.pop()
+            print(node.data)
+            node=node.right
+        else:
+            break
 tree = BinaryTree(1)
 tree.root.left=TreeNode(2)
 tree.root.right=TreeNode(3)
@@ -50,3 +73,4 @@ tree.root.right.right=TreeNode(7)
 tree.print_tree('preorder')
 tree.print_tree('inorder')
 tree.print_tree('postorder')
+preorder(tree.root)
